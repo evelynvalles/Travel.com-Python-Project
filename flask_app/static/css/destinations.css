@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root {
+    --pink:rgb(240, 69, 214);
+}
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+::selection {
+    background-color: var(--pink);
+    color: white;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: var(--pink);
+    color: white;
+    padding: .8rem 3rem;
+    border: .2rem solid var(--pink);
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover {
+    background-color: rgba(255, 0, 247, 0.2);
+    color: var(--pink);
+}
+
+/* header section - nav bar section */
+header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background-color: #333;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+}
+
+header .logo {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: white;
+    text-transform: uppercase;
+}
+
+header .logo span {
+    color: var(--pink);
+}
+
+header .navbar a {
+    color: white;
+    font-size: 2rem;
+    margin: 0 .8rem;
+}
+
+header .navbar a:hover {
+    color: var(--pink);
+}
+
+header .icons i {
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    margin-right: 2rem;
+}
+
+header .icons i:hover {
+    color: var(--pink);
+}
+
+header .search-bar-container {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    padding: 1.5rem 2rem;
+    background-color: #333;
+    border-top: .1rem solid rgba(255,255,255,.2);
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+
+header .search-bar-container.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+header .search-bar-container #search-bar {
+    width: 100%;
+    padding: 1rem;
+    text-transform: none;
+    color: #333;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+}
+
+header .search-bar-container label {
+    color: white;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+}
+
+header .search-bar-container label:hover {
+    color: var(--pink);
+}
+
+#logout {
+    padding: .5rem 2rem;
+}
+
+/* login section  */
+.login-form-container {
+    position: fixed;
+    top: 120%; left: 0;
+    z-index: 10000;
+    min-height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-container.active {
+    top: 0;
+}
+
+.login-form-container form {
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: .5rem;
+    background-color: white;
+    width: 50rem;
+}
+
+.login-form-container form h3 {
+    font-size: 3rem;
+    color: #444;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.login-form-container form .box {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.7rem;
+    color: #333;
+    margin: .6rem 0;
+    border: .1rem solid rgba(0,0,0,.3);
+    text-transform: none;
+}
+
+.login-form-container form .box:focus {
+    border-color: var(--pink);
+}
+
+.login-form-container form .btn {
+    display: block;
+    width: 100%;
+}
+
+.login-form-container form p {
+    margin-top: 1rem ;
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.login-form-container form p a {
+    color: var(--pink);
+}
+
+.login-form-container form p a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+.login-form-container #form-close {
+    position: absolute;
+    top: 2rem; right: 3rem;
+    font-size: 5rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* content  */
+.home {
+    margin-top: 9rem;
+}
+
+.home h1 {
+    font-size: 2.7rem;
+}
+
+.hotels .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.hotels .box-container .box {
+    flex: 1 1 30rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.1);
+}
+
+.hotels .box-container .box .content {
+    padding: 2rem;
+}
+
+.hotels .box-container .box .content h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.hotels .box-container .box .content p {
+    font-size: 1.6rem;
+    color: #666;
+    padding: 1rem 0;
+}
+
+.hotels .box-container .box .review {
+    font-size: 1.5rem;
+    color: #333;
+    padding-top: 1rem;
+}
+
+.hotels .box-container .box img {
+    height: 25rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.date form {
+    padding: 1.5rem 0;
+}
+.date form h3 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.date form label {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.date form .inputBox {
+    width: 15%;
+}
+
+input {
+    margin-right: 2rem;
+    padding: .5rem;
+    border: .2rem solid rgba(0,0,0,.1);
+    text-transform: none;
+}
+
+#error {
+    color: red;
+    font-size: 1.5rem;
+    margin-top: .5rem;
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Travel</title>
+</head>
+<body>
+    
+    <header>
+        <a href="/" class="logo"><span>T</span>ravel</a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#book">Book</a>
+            <a href="#packages">Packages</a>
+            <a href="#contact">Contact Us</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            <i class="fas fa-user" id="login-btn"></i>
+            {% if session.user_id != 5 %}
+            <a href="/logout" class="btn" id="logout">Logout</a>
+            {% endif %}
+        </div>
+
+        <form action="" method="post" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="search here...">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </header>
+    <!-- Login form popup  -->
+    <div class="login-form-container" id="#login">
+
+        <i class="fas fa-times" id="form-close"></i>
+
+        <form action="/login" method="post">
+            <h3>login</h3>
+            <input type="email" name="email" class="box" placeholder="enter your email...">
+            {% for message in get_flashed_messages(category_filter = ['err_login_email']) %}
+            <p class="red">{{message}}</p>
+            {% endfor %}
+            <input type="password" name="password" class="box" placeholder="enter your password">
+            {% for message in get_flashed_messages(category_filter = ['err_login_password']) %}
+            <p class="red">{{message}}</p>
+            {% endfor %}
+            <input type="submit" class="btn" value="Login Now">
+            <p>Don't have an account? <a href="/register_now">Register Now</a></p>
+        </form>
+
+    </div>
+    <!-- home section starts -->
+
+    <section class="home" id="home">
+        <div class="content">
+            <h3>Adventure is Worthwhile</h3>
+            <p>Discover new places with us, adventure awaits</p>
+            <a href="#" class="btn">Discover More</a>
+        </div>
+
+        <div class="photo-container">
+            <img src="{{url_for('static', filename='img/home.jpg')}}" alt="Home section background picture">
+        </div>
+    </section>
+    <!-- booking section starts  -->
+
+    <section class="book" id="book">
+        <!-- welcome message  -->
+        {% if session.user_id != 5 %}
+        <h1 class="welcome">Welcome {{user.first_name}}!</h1>
+        {% endif %}
+        
+        <h1 class="heading">
+            <span>b</span>
+            <span>o</span>
+            <span>o</span>
+            <span>k</span>
+            <span class="space"></span>
+            <span>n</span>
+            <span>o</span>
+            <span>w</span>
+        </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="{{url_for('static', filename='img/travel_logo.png')}}" alt="Booking travel logo">
+            </div>
+
+            <form action="/book" id="book_form" method="post">
+                <div class="inputBox">
+                    <h3>Where to?</h3>
+                    <input type="text" name="where_to" placeholder="place name">
+                    {% for message in get_flashed_messages(category_filter = ['err_where_to']) %}
+                    <p class="red">{{message}}</p>
+                    {% endfor %}
+                </div>
+                <div class="inputBox">
+                    <h3>How Many?</h3>
+                    <input type="number" name="how_many" placeholder="number of guests">
+                    {% for message in get_flashed_messages(category_filter = ['err_how_many']) %}
+                    <p class="red">{{message}}</p>
+                    {% endfor %}
+                </div>
+                <div class="inputBox">
+                    <h3>Arrival Date: </h3>
+                    <input type="date" name="arrival_date">
+                    {% for message in get_flashed_messages(category_filter = ['err_arrival_date']) %}
+                    <p class="red">{{message}}</p>
+                    {% endfor %}
+                </div>
+                <div class="inputBox">
+                    <h3>Departure Date: </h3>
+                    <input type="date" name="departure_date">
+                    {% for message in get_flashed_messages(category_filter = ['err_departure_date']) %}
+                    <p class="red">{{message}}</p>
+                    {% endfor %}
+                </div>
+                <input type="submit" value="Book Now" class="btn">
+            </form>
+
+        </div>
+    </section>
+    
+    <!-- packages section  -->
+
+    <section class="packages" id="packages">
+        <h1 class="heading">
+            <span>p</span>
+            <span>a</span>
+            <span>c</span>
+            <span>k</span>
+            <span>a</span>
+            <span>g</span>
+            <span>e</span>
+            <span>s</span>
+        </h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="{{url_for('static', filename='img/cabo.jpg')}}" alt="Cabo San Lucas vacation package image">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i>Cabo San Lucas</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo deserunt officia explicabo quia quisquam est error 
+                    blanditiis consequatur maiores! Odit placeat neque alias ipsam cumque quasi temporibus, et praesentium. Sit?</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">$800 <span>$1,100</span></div>
+                    <a href="/destinations/cabo" class="btn" id="btn">More Info</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="{{url_for('static', filename='img/london.jpg')}}" alt="London vacation package image">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i>London</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo deserunt officia explicabo quia quisquam est error 
+                    blanditiis consequatur maiores! Odit placeat neque alias ipsam cumque quasi temporibus, et praesentium. Sit?</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">$1,200 <span>$1,500</span></div>
+                    <a href="/destinations/london" class="btn">More Info</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="{{url_for('static', filename='img/tokyo.jpg')}}" alt="Tokyo vacation package image">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i>Tokyo</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo deserunt officia explicabo quia quisquam est error 
+                    blanditiis consequatur maiores! Odit placeat neque alias ipsam cumque quasi temporibus, et praesentium. Sit?</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">$1,800 <span>$2,300</span></div>
+                    <a href="/destinations/tokyo" class="btn">More Info</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="{{url_for('static', filename='img/honolulu.jpg')}}" alt="Honolulu vacation package image">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i>Honolulu</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo deserunt officia explicabo quia quisquam est error 
+                    blanditiis consequatur maiores! Odit placeat neque alias ipsam cumque quasi temporibus, et praesentium. Sit?</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">$800 <span>$1,000</span></div>
+                    <a href="/destinations/honolulu" class="btn">More Info</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="{{url_for('static', filename='img/new_york.jpg')}}" alt="New York vacation package image">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i>New York City</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo deserunt officia explicabo quia quisquam est error 
+                    blanditiis consequatur maiores! Odit placeat neque alias ipsam cumque quasi temporibus, et praesentium. Sit?</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">$900 <span>$1,200</span></div>
+                    <a href="/destinations/new_york_city" class="btn">More Info</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="{{url_for('static', filename='img/paris.jpg')}}" alt="Paris vacation package image">
+                <div class="content">
+                    <h3> <i class="fas fa-map-marker-alt"></i>Paris</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo deserunt officia explicabo quia quisquam est error 
+                    blanditiis consequatur maiores! Odit placeat neque alias ipsam cumque quasi temporibus, et praesentium. Sit?</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="price">$900 <span>$1,350</span></div>
+                    <a href="/destinations/paris" class="btn">More Info</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- contact section  -->
+
+    <section class="contact" id="contact">
+        <h1 class="heading">
+            <span>c</span>
+            <span>o</span>
+            <span>n</span>
+            <span>t</span>
+            <span>a</span>
+            <span>c</span>
+            <span>t</span>
+            <span class="space"></span>
+            <span>u</span>
+            <span>s</span>
+        </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="{{url_for('static', filename='img/contact-img.svg')}}" alt="Contact us logo">
+            </div>
+
+            <form action="/contact" id="contact_form" method="post">
+                <div class="inputBox">
+                    <input type="text" name="contact_name" placeholder="name">
+                    {% for message in get_flashed_messages(category_filter = ['err_contact_name']) %}
+                    <p class="red">{{message}}</p>
+                    {% endfor %}
+                    <input type="email" name="contact_email" placeholder="email">
+                    {% for message in get_flashed_messages(category_filter = ['err_contact_email']) %}
+                    <p class="red">{{message}}</p>
+                    {% endfor %}
+                </div>
+                <div class="inputBox">
+                    <input type="tel" name="contact_number" placeholder="number">
+                    {% for message in get_flashed_messages(category_filter = ['err_contact_number']) %}
+                    <p class="red">{{message}}</p>
+                    {% endfor %}
+                    <input type="text" name="contact_subject" placeholder="subject">
+                    {% for message in get_flashed_messages(category_filter = ['err_contact_subject']) %}
+                    <p class="red">{{message}}</p>
+                    {% endfor %}
+                </div>
+                <textarea name="contact_message" cols="30" rows="10" placeholder="message"></textarea>
+                {% for message in get_flashed_messages(category_filter = ['err_contact_message']) %}
+                <p class="red">{{message}}</p>
+                {% endfor %}
+                <input type="submit" class="btn" value="Send Message">
+            </form>
+
+        </div>
+    </section>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>

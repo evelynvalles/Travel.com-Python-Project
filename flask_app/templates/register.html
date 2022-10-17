@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+    
+    <header>
+        <a href="/" class="logo"><span>T</span>ravel</a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#book">Book</a>
+            <a href="#packages">Packages</a>
+            <a href="#">Reviews</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            <i class="fas fa-user" id="login-btn"></i>
+        </div>
+
+        <form action="" method="post" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="search here...">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    </header>
+
+        <!-- Registration form popup  -->
+        <div class="register-form-container">
+
+            <a href="/"><i class="fas fa-times" id="register-close"></i></a>
+    
+            <form action="/register" method="post">
+                <h3>Register Now</h3>
+                <input type="first_name" class="box" name="first_name" placeholder="enter your first name...">
+                {% for message in get_flashed_messages(category_filter = ['err_first_name']) %}
+                <p id="red">{{message}}</p>
+                {% endfor %}
+                <input type="last_name" class="box" name="last_name" placeholder=" enter your last name...">
+                {% for message in get_flashed_messages(category_filter = ['err_last_name']) %}
+                <p id="red">{{message}}</p>
+                {% endfor %}
+                <input type="email" class="box" name="email" placeholder="enter your email...">
+                {% for message in get_flashed_messages(category_filter = ['err_email']) %}
+                <p id="red">{{message}}</p>
+                {% endfor %}
+                <input type="password" class="box" name="password" placeholder="enter your password">
+                {% for message in get_flashed_messages(category_filter = ['err_password']) %}
+                <p id="red">{{message}}</p>
+                {% endfor %}
+                <input type="password" class='box' name="confirm_password" placeholder="confirm your password">
+                <p>Already have an account? <a href="/">Login Now</a></p>
+                <input type="submit" class="btn" value="Register Now">
+            </form>
+    
+        </div>
+</body>
+</html>
