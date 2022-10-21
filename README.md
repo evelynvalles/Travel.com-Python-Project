@@ -12,7 +12,7 @@ While designing Travel.com, I took much care into the front-end design in order 
 ![alt.text](https://github.com/evelynvalles/Travel.com-Python-Project/blob/main/imgs/Screenshot%20(36).png)
 
 
-## Travel.com Demo Videos
+# Travel.com Demo Videos
 
 The images belows will be specific links to different demos of my website. Please feel free to click and view my websites to watch the front-end visuals and functionality of Travel.com!
 
