@@ -12,4 +12,7 @@ While designing Travel.com, I took much care into the front-end design in order 
 ![alt.text](https://github.com/evelynvalles/Travel.com-Python-Project/blob/main/imgs/Screenshot%20(36).png)
 
 
-## Travel.com Demo
+## Travel.com Home Page Demo
+The following is a tutorial of my home page sections.
+
+https://github.com/evelynvalles/Travel.com-Python-Project/blob/main/imgs/Travel%20-%20Google%20Chrome%202022-10-20%2019-54-51.mp4
