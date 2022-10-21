@@ -11,3 +11,4 @@ While designing Travel.com, I took much care into the front-end design in order 
 
 ## Travel.com Home Page Design 
 
+![alt.text](https://github.com/evelynvalles/Travel.com-Python-Project/blob/main/imgs/Screenshot%20(36).png)
