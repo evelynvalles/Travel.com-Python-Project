@@ -11,5 +11,3 @@ While designing Travel.com, I took much care into the front-end design in order 
 
 ## Travel.com Home Page Design 
 
-    ![alt text](imgs\Screenshot (36).png)
-
