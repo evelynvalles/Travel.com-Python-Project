@@ -8,3 +8,9 @@ A full-stack travel agency website featuring Python, Flask, MySQL, Javascript, C
 As a full-stack developer with a tremendous passion of traveling and front-end design, I programmed this travel website to find real-time hotel availablity at the world's most popular tourist attractions. 
 
 While designing Travel.com, I took much care into the front-end design in order to provide users with a modern and attractice booking website and stand out from others.
+
+## Travel.com Home Page Design 
+
+    ```md
+    ![alt text](imgs\Screenshot (36).png)
+    ```
