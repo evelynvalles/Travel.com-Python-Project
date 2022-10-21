@@ -15,4 +15,4 @@ While designing Travel.com, I took much care into the front-end design in order 
 ## Travel.com Home Page Demo
 The following is a tutorial of my home page sections.
 
-[![Watch the video](https://youtu.be/hrRDpllRvro)]
+[![Travel.com Demo](https://i9.ytimg.com/vi/hrRDpllRvro/mq2.jpg?sqp=CLjmy5oG&rs=AOn4CLD9CQ-HiIkKDMFoOtoiKz_j7SVQZw)](https://youtu.be/hrRDpllRvro "Travel.com Home Page + Login and Registration Demo")
