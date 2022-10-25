@@ -55,14 +55,14 @@
     </section>
 
     <section class="date">
-        <form onsubmit="getTokyoData(event)">
+        <form onsubmit="getTokyoData(event)" id="tokyoForm">
             <h3>Choose Your Dates: </h3>
             <label for="check_in">Check In: </label>
             <input type="date" name="check_in" class="inputBox" id="check_in">
             <label for="check_out">Check Out: </label>
             <input type="date" name="check_out" class="inputBox" id="check_out">
-            <label for="amount">Adults: </label>
-            <input type="number" name="amount" placeholder="Number of Adults" class="inputBox" id="num_adults">
+            <label for="num_adults">Adults: </label>
+            <input type="number" name="num_adults" placeholder="Number of Adults" class="inputBox" id="num_adults">
             <div id="error"></div>
             <input type="submit" class="btn"  id='btn' value="Search">
         </form>

@@ -22,20 +22,6 @@ formClose.addEventListener('click', () => {
     loginForm.classList.remove('active');
 })
 
-const search_api = () => {
-    fetch('http://localhost:5000/get_api',{method:'GET'})
-        .then(res => res.json() )
-        .then( data => console.log(data) )
-}
-
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '',
-		'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
-	}
-};
-
 boxDiv = document.querySelector('#box')
 imageDiv = document.querySelector('#image')
 hotelNameDiv = document.querySelector('#hotel_name')
@@ -45,9 +31,12 @@ errorSec = document.querySelector('#error')
 
 function getCaboData(event) {
     event.preventDefault()
-    checkIn = document.querySelector('#check_in').value
-    checkOut = document.querySelector('#check_out').value
-    numAdults = document.querySelector('#num_adults').value
+    let checkIn = document.querySelector('#check_in').value
+    let checkOut = document.querySelector('#check_out').value
+    let numAdults = document.querySelector('#num_adults').value
+    var searchForm = document.getElementById('caboForm')
+    var form = new FormData(searchForm);
+
     if (checkIn === '') {
         errorSec.innerHTML+= '<p>please choose a check in date</p>'
     }
@@ -58,37 +47,40 @@ function getCaboData(event) {
         errorSec.innerHTML+= '<p>please choose number of adults</p>'
     }
     else {
-    fetch(`https://hotels4.p.rapidapi.com/properties/list?destinationId=1640244&pageNumber=1&pageSize=15&checkIn=${checkIn}&checkOut=${checkOut}&adults1=${numAdults}&sortOrder=BEST_SELLE&locale=en_US&currency=USD`, options)
-	.then(response => response.json())
-	.then(data => {
-        console.log(data)
-        for (let i = 0; i < data.data.body.searchResults.results.length; i++) {
-            if (data.data.body.searchResults.results[i].vrBadge) {
-                continue
+        fetch('http://localhost:5000/searching/cabo',{method:'POST',body:form})
+        .then(res => res.json() )
+        .then(data => {
+            console.log(data)
+            for (let i = 0; i < data.data.body.searchResults.results.length; i++) {
+                if (data.data.body.searchResults.results[i].vrBadge) {
+                    continue
+                }
+                if (data.data.body.searchResults.results[i].optimizedThumbUrls.srpDesktop == undefined) {
+                    continue
+                }
+                boxDiv.innerHTML += `
+                <div class="box">
+                    <div class="image"><img src="${data.data.body.searchResults.results[i].optimizedThumbUrls.srpDesktop}" alt="hotel picture"</div>
+                    <div class="content">
+                        <h2>${data.data.body.searchResults.results[i].name}</h2>
+                        <p>${data.data.body.searchResults.results[i].address.streetAddress}, ${data.data.body.searchResults.results[i].address.locality}, ${data.data.body.searchResults.results[i].address.countryName}</p>
+                        <div class="review">${data.data.body.searchResults.results[i].guestReviews.rating}/10</div>
+                    </div>
+                </div>`
             }
-            if (data.data.body.searchResults.results[i].optimizedThumbUrls.srpDesktop == undefined) {
-                continue
-            }
-            boxDiv.innerHTML += `
-            <div class="box">
-                <div class="image"><img src="${data.data.body.searchResults.results[i].optimizedThumbUrls.srpDesktop}" alt="hotel picture"</div>
-                <div class="content">
-                    <h2>${data.data.body.searchResults.results[i].name}</h2>
-                    <p>${data.data.body.searchResults.results[i].address.streetAddress}, ${data.data.body.searchResults.results[i].address.locality}, ${data.data.body.searchResults.results[i].address.countryName}</p>
-                    <div class="review">${data.data.body.searchResults.results[i].guestReviews.rating}/10</div>
-                </div>
-            </div>`
-        }
-    })
-	.catch(err => console.error(err));
+        })
+        .catch(err => console.error(err));
+        } 
     }
-}
 
 function getLondonData(event) {
     event.preventDefault()
     checkIn = document.querySelector('#check_in').value
     checkOut = document.querySelector('#check_out').value
     numAdults = document.querySelector('#num_adults').value
+    var searchForm = document.getElementById('londonForm')
+    var form = new FormData(searchForm);
+
     if (checkIn === '') {
         errorSec.innerHTML+= '<p>please choose a check in date</p>'
     }
@@ -99,7 +91,7 @@ function getLondonData(event) {
         errorSec.innerHTML+= '<p>please choose number of adults</p>'
     }
     else {
-    fetch(`https://hotels4.p.rapidapi.com/properties/list?destinationId=549499&pageNumber=1&pageSize=15&checkIn=${checkIn}&checkOut=${checkOut}&adults1=${numAdults}&sortOrder=BEST_SELLE&locale=en_US&currency=USD`, options)
+    fetch('http://localhost:5000/searching/london',{method:'POST',body:form})
 	.then(response => response.json())
 	.then(data => {
         console.log(data)
@@ -130,6 +122,9 @@ function getTokyoData(event) {
     checkIn = document.querySelector('#check_in').value
     checkOut = document.querySelector('#check_out').value
     numAdults = document.querySelector('#num_adults').value
+    var searchForm = document.getElementById('tokyoForm')
+    var form = new FormData(searchForm);
+
     if (checkIn === '') {
         errorSec.innerHTML+= '<p>please choose a check in date</p>'
     }
@@ -140,7 +135,7 @@ function getTokyoData(event) {
         errorSec.innerHTML+= '<p>please choose number of adults</p>'
     }
     else {
-    fetch(`https://hotels4.p.rapidapi.com/properties/list?destinationId=726784&pageNumber=1&pageSize=15&checkIn=${checkIn}&checkOut=${checkOut}&adults1=${numAdults}&sortOrder=BEST_SELLE&locale=en_US&currency=USD`, options)
+    fetch('http://localhost:5000/searching/tokyo',{method:'POST',body:form})
 	.then(response => response.json())
 	.then(data => {
         console.log(data)
@@ -171,6 +166,9 @@ function getHonoluluData(event) {
     checkIn = document.querySelector('#check_in').value
     checkOut = document.querySelector('#check_out').value
     numAdults = document.querySelector('#num_adults').value
+    var searchForm = document.getElementById('honoluluForm')
+    var form = new FormData(searchForm);
+
     if (checkIn === '') {
         errorSec.innerHTML+= '<p>please choose a check in date</p>'
     }
@@ -181,7 +179,7 @@ function getHonoluluData(event) {
         errorSec.innerHTML+= '<p>please choose number of adults</p>'
     }
     else {
-    fetch(`https://hotels4.p.rapidapi.com/properties/list?destinationId=1431094&pageNumber=1&pageSize=15&checkIn=${checkIn}&checkOut=${checkOut}&adults1=${numAdults}&sortOrder=BEST_SELLE&locale=en_US&currency=USD`, options)
+    fetch('http://localhost:5000/searching/honolulu',{method:'POST',body:form})
 	.then(response => response.json())
 	.then(data => {
         console.log(data)
@@ -212,6 +210,9 @@ function getNewYorkData(event) {
     checkIn = document.querySelector('#check_in').value
     checkOut = document.querySelector('#check_out').value
     numAdults = document.querySelector('#num_adults').value
+    var searchForm = document.getElementById('nycForm')
+    var form = new FormData(searchForm);
+
     if (checkIn === '') {
         errorSec.innerHTML+= '<p>please choose a check in date</p>'
     }
@@ -222,7 +223,7 @@ function getNewYorkData(event) {
         errorSec.innerHTML+= '<p>please choose number of adults</p>'
     }
     else {
-    fetch(`https://hotels4.p.rapidapi.com/properties/list?destinationId=1506246&pageNumber=1&pageSize=15&checkIn=${checkIn}&checkOut=${checkOut}&adults1=${numAdults}&sortOrder=BEST_SELLE&locale=en_US&currency=USD`, options)
+    fetch('http://localhost:5000/searching/new_york_city',{method:'POST',body:form})
 	.then(response => response.json())
 	.then(data => {
         console.log(data)
@@ -253,6 +254,9 @@ function getParisData(event) {
     checkIn = document.querySelector('#check_in').value
     checkOut = document.querySelector('#check_out').value
     numAdults = document.querySelector('#num_adults').value
+    var searchForm = document.getElementById('parisForm')
+    var form = new FormData(searchForm);
+
     if (checkIn === '') {
         errorSec.innerHTML+= '<p>please choose a check in date</p>'
     }
@@ -263,7 +267,7 @@ function getParisData(event) {
         errorSec.innerHTML+= '<p>please choose number of adults</p>'
     }
     else {
-    fetch(`https://hotels4.p.rapidapi.com/properties/list?destinationId=504261&pageNumber=1&pageSize=15&checkIn=${checkIn}&checkOut=${checkOut}&adults1=${numAdults}&sortOrder=BEST_SELLE&locale=en_US&currency=USD`, options)
+    fetch('http://localhost:5000/searching/paris',{method:'POST',body:form})
 	.then(response => response.json())
 	.then(data => {
         console.log(data)
